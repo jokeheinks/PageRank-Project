@@ -1,5 +1,6 @@
-Results
 __pycache__
 .ipynb_checkpoints
-PageRankExampleData
+
 bigRandom.txt
+Results/PageRank_bigRandom.txt.csv
+Results/RandomSurfer_bigRandom.txt.csv
