@@ -1,5 +1,5 @@
-import networkx as nx
 import random
+import networkx as nx
 
 DATA_LOCATION = "PageRankExampleData"
 
@@ -51,7 +51,8 @@ def initCountAttr(graph: nx.DiGraph) -> None:
 
 
 def randomSurfer(graph: nx.DiGraph(), iterations: int, m: float) -> tuple[nx.DiGraph, int]:
-    """Implements a random surfer, that goes through the graph and adds 1 to 'weight' for every node it visits
+    """Implements a random surfer, that goes through the graph
+        and adds 1 to 'weight' for every node it visits
 
     Args:
         graph (nx.DiGraph): A directed graph
@@ -59,8 +60,9 @@ def randomSurfer(graph: nx.DiGraph(), iterations: int, m: float) -> tuple[nx.DiG
         m (float): The chance, that the randomSurfer goes to a random node instead of a successor
 
     Returns:
-        tuple[nx.DiGraph, int]: A graph with the counts of the random surfer in the 'weight' attribute
-                                Number of steps overall
+        tuple[nx.DiGraph, int]:
+            A graph with the counts of the random surfer in the 'weight' attribute
+            Number of steps overall
     """
     initCountAttr(graph)
 
@@ -144,8 +146,9 @@ def pageRank(graph: nx.DiGraph, maxDepth: int, m: float) -> tuple[nx.DiGraph, in
         m (float): The dampening factor
 
     Returns:
-        tuple[nx.DiGraph, int]: The graph, where every node has the 'weight' corresponding to the importance score
-                                The number of iterations pageRank ran for
+        tuple[nx.DiGraph, int]:
+            The graph, where every node has the 'weight' corresponding to the importance score
+            The number of iterations pageRank ran for
     """
     n = numberOfNodes(graph)
 
@@ -189,13 +192,14 @@ def bold(String: str) -> str:
 
 
 def printSummary(filename: str, pageRankGraph: nx.DiGraph, pageRankIterations: int, randomSurferGraph: nx.DiGraph, randomSurferIterations: int) -> None:
-    """Prints a summary of the results from both pageRank and randomSurfer with the iteration and top nodes
+    """Prints a summary of the results from both pageRank and randomSurfer
+        with the iteration and top nodes
 
     Args:
         filename (str): The name of the file containing the data
         pageRankGraph (nx.DiGraph): The graph pageRank returned, containing the weighted nodes
         pageRankIterations (int): The iterations, pageRank ran for
-        randomSurferGraph (nx.DiGraph): The graph randomSurfer returned, containing the weighted nodes 
+        randomSurferGraph (nx.DiGraph): Graph randomSurfer returned, containing the weighted nodes
         randomSurferIterations (int): The iterations, randomSurfer ran for
     """
     print(bold(f"The result for {filename[:-4]}"))
@@ -220,7 +224,7 @@ def printToCSV(filename: str, graph: nx.DiGraph, algorithm: str) -> None:
     weights = nx.get_node_attributes(graph, "weight")
     sortedNodes = sorted(weights, key=lambda x: weights[x], reverse=True)
 
-    with open(f"{RESULT_LOCATION}/{algorithm}_{filename[:-4]}.csv", "w") as file:
+    with open(f"{RESULT_LOCATION}/{algorithm}_{filename[:-4]}.csv", "w", encoding="utf-8") as file:
         file.write("Node, Score\n")
         for node in sortedNodes:
             file.write(f"{node}, {graph.nodes()[node]['weight']}\n")
